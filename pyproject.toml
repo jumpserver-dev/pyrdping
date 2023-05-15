@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.cibuildwheel]
+build = ["*-manylinux*", "*-musllinux*", "*-macos*"]
+skip = ["pp*", "cp36*", "cp37*", "cp38*"]
+
+[tool.cibuildwheel.linux]
+before-all = [
+    "command -v yum && yum install -y freerdp-devel",
+    "command -v apt-get && apt-get install -y freerdp2-dev"
+]
+test-command = "echo 'installed'"
+
+[[tool.cibuildwheel.overrides]]
+select = "*-musllinux*"
+before-all = "apk add freerdp-dev"
+
+[tool.cibuildwheel.macos]
+before-all = "brew install freerdp"
+test-command = "echo 'installed'"
