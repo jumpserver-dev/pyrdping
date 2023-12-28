@@ -31,6 +31,6 @@ setup(
     name="pyrdping",
     author="JumpServer",
     author_email="code@jumpserver.org",
-    version="0.0.1",
+    version="0.0.2",
     ext_modules=[modulel]
 )
